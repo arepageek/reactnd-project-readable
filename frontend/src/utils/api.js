@@ -32,16 +32,17 @@ fetch(`${api}/posts/` + postId, {headers})
         res => res.json(),
         error => console.log('An error ocurred', error)
     )
-/*
-// GET ALL COMMENTS FROM POST
-export const getComments = (postId) => {
-    fetch(`${api}/posts/` + postId + `/comments`, {headers})
-    .then(
-        res => res.json(),
-        error => console.log("Error getting comments!", error)
-    )
-}
 
+
+// GET ALL COMMENTS FROM POST
+export const getComments = (postId) => 
+fetch(`${api}/posts/` + postId + `/comments`, {headers})
+    .then(
+    res => res.json(),
+    error => console.log("Error getting comments!", error)
+)
+
+/*
 // INSERT POST
 export const insertPost = (obj) => {
     fetch(`${api}/posts`,{

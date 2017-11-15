@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import {Card, Badge} from 'react-materialize';
 import {connect} from 'react-redux';
-import {fetchPost} from '../actions';
+import {fetchPost, fetchComments} from '../actions';
 import PostComponent from '../components/post';
 import CommentComponent from '../components/comment';
 class PostDetail extends Component {
@@ -9,30 +8,37 @@ class PostDetail extends Component {
         const {
             match: { params: { postId }},
           fetchPost,
+          fetchComments
         } = this.props;
         fetchPost(postId);
+        fetchComments(postId);
       }
     render() {
         const {
-            post = []
+            post = [],
+            comments = []
         } = this.props;
         return (
             <div>
            <PostComponent post={post} />
-           <CommentComponent />
+           {comments.map((comment) => (
+            <CommentComponent comment={comment} key= {comment.id}/>            
+           ))}
            </div>
         );
     }
 }
-const mapStateToProps = ({post}) => {
+const mapStateToProps = ({post,comments}) => {
     return {
-      post: post.post
+      post: post.post,
+      comments: comments.comments
     }
 }
   
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchPost: (postId) => dispatch(fetchPost(postId)),
+        fetchComments: (postId) => dispatch(fetchComments(postId))
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(PostDetail);

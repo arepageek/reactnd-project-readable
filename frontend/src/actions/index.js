@@ -1,7 +1,8 @@
 import {
 getPosts,
 getCategories,
-getPost
+getPost,
+getComments
 
 } from '../utils/api';
 
@@ -47,6 +48,14 @@ export const fetchPost = (postId) => dispatch => (
         .then(post => dispatch({
             type: GET_SELECTED_POSTS,
             post
+        }))
+)
+
+export const fetchComments = (postId) => dispatch => (
+    getComments(postId)
+        .then(comments => dispatch({
+            type: GET_ALL_COMMENTS,
+            comments
         }))
 )
 

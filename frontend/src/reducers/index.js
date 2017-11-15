@@ -5,7 +5,8 @@ import {
     SORT_BY_UP_VOTES,
     SORT_BY_DOWN_VOTES,
     SORT_BY_TIMESTAMP,
-    GET_SELECTED_POSTS
+    GET_SELECTED_POSTS,
+    GET_ALL_COMMENTS
 } from '../actions';
 
 
@@ -45,6 +46,19 @@ const categories = (state=initialCategoriesState, action) => {
     }
 };
 
+const comments = (state = {comments: []}, action) => {
+    switch(action.type){
+        case GET_ALL_COMMENTS:
+            console.log(action);
+            const {comments} = action;
+                return {
+                    comments
+                };
+            default:
+                return state;
+    }
+}
+
 const sortPostBy = (posts, action) => {
     switch (action) {
         case SORT_BY_UP_VOTES:
@@ -71,4 +85,4 @@ const initialPostState = {
     posts: []
 }
 
-export default combineReducers({posts,post,categories});
+export default combineReducers({posts,post,categories,comments});

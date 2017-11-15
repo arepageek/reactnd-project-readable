@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Card, Badge} from 'react-materialize';
 import {connect} from 'react-redux';
 import {fetchPosts} from '../actions';
 import PostComponent from '../components/post';
