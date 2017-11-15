@@ -1,4 +1,4 @@
-const api = process.env.REACT_APP_PROJECT_READABLE_API_URL || 'http://localhost:5001'
+const api = process.env.REACT_APP_PROJECT_READABLE_API_URL || 'http://localhost:3001'
 
 let token = localStorage.token
 
@@ -11,23 +11,28 @@ const headers = {
 }
 
 // GET ALL POST
-export const getPosts = () => {
-    fetch(`${api}/posts`, {headers})
+export const getPosts = () =>
+fetch(`${api}/posts`, { headers })
     .then(
         res => res.json(),
-        error => console.log("Error getting posts!", error)
+        error => console.log('An error occurred', error)
     )
-}
 
 // GET ALL CATEGORIES
-export const getCategories = () => {
-    fetch(`${api}/categories`, {headers})
+export const getCategories = () =>
+fetch(`${api}/categories`, { headers })
     .then(
         res => res.json(),
-        error => console.log("Error getting categories!", error)
+        error => console.log('An error occurred', error)
     )
-}
 
+export const getPost = (postId) =>
+fetch(`${api}/posts/` + postId, {headers})
+    .then(
+        res => res.json(),
+        error => console.log('An error ocurred', error)
+    )
+/*
 // GET ALL COMMENTS FROM POST
 export const getComments = (postId) => {
     fetch(`${api}/posts/` + postId + `/comments`, {headers})
@@ -45,7 +50,7 @@ export const insertPost = (obj) => {
             ...headers,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(ojb)
+        body: JSON.stringify(obj)
     })
     .then(
         res => res.json(),
@@ -191,3 +196,5 @@ export const getPostsFromCategory = (category) => {
     res => res.json(),
     error => console.log("Error getting single comment", error)
 }
+
+*/

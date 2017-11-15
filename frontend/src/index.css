@@ -1,5 +1,9 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+  background-color: #f0f2f4;  
+}
+nav {
+  background-color: #616161;
+}
+.page-footer {
+  background-color: #616161; 
 }
