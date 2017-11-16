@@ -5,7 +5,7 @@ class PostComponent extends Component {
 
     render() {
         const {
-            post = []
+            post = ''
         } = this.props;
 
         return (
@@ -14,7 +14,8 @@ class PostComponent extends Component {
                     <h4>{post.title}</h4>
                     </Link>
                     <h6>{post.body}</h6>
-                    <Badge>Comments: ({post.commentCount})</Badge>                    
+                    <Badge>Comments: ({post.commentCount})</Badge> 
+                    <Badge>Score: {post.voteScore}</Badge>                                                            
                     <p>Author: {post.author}</p>
                 </Card>
         );

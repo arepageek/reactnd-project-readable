@@ -19,7 +19,9 @@ class CategoriesComponent extends Component {
             <Card>
             <h4>Categories</h4>
             {categories.map((category,i) =>(
-                <Link to={`/${category.path}`}>
+                <Link to={`/category/${category.path}`}>
+                {console.log(category)}
+                
                 <h6 key={i}>{category.name}</h6>
                 </Link>
             ))}

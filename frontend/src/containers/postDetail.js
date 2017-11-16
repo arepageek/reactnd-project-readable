@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {fetchPost, fetchComments} from '../actions';
 import PostComponent from '../components/post';
 import CommentComponent from '../components/comment';
+import NewComment from './newComment';
 class PostDetail extends Component {
     componentDidMount(){
         const {
@@ -24,6 +25,7 @@ class PostDetail extends Component {
            {comments.map((comment) => (
             <CommentComponent comment={comment} key= {comment.id}/>            
            ))}
+           <NewComment />
            </div>
         );
     }

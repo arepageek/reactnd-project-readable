@@ -6,14 +6,21 @@ import {
     SORT_BY_DOWN_VOTES,
     SORT_BY_TIMESTAMP,
     GET_SELECTED_POSTS,
-    GET_ALL_COMMENTS
+    GET_ALL_COMMENTS,
+    INSERT_COMMENT,
+    GET_POST_FROM_CATEGORY,
+    INSERT_POST
 } from '../actions';
 
 
 const posts = (state = initialPostState, action) =>{
+    const {posts}  = action;    
     switch(action.type){
         case GET_ALL_POSTS:
-            const {posts}  = action;
+            return {
+                posts: sortPostBy(posts, SORT_BY_UP_VOTES)
+            };
+        case GET_POST_FROM_CATEGORY:
             return {
                 posts: sortPostBy(posts, SORT_BY_UP_VOTES)
             };
@@ -23,9 +30,13 @@ const posts = (state = initialPostState, action) =>{
 };
 
 const post = (state = {post: []}, action) =>{
+    const {post} = action;    
     switch(action.type){
         case GET_SELECTED_POSTS:
-          const {post} = action;
+            return {
+                post
+            }
+        case INSERT_POST:
             return {
                 post
             }
@@ -49,11 +60,14 @@ const categories = (state=initialCategoriesState, action) => {
 const comments = (state = {comments: []}, action) => {
     switch(action.type){
         case GET_ALL_COMMENTS:
-            console.log(action);
-            const {comments} = action;
+             const {comments} = action;
                 return {
                     comments
                 };
+            case INSERT_COMMENT:
+                return {
+                    comments: [...state.comments, action.comment]
+                }
             default:
                 return state;
     }

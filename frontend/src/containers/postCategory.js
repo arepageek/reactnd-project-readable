@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {fetchPosts} from '../actions';
+import {fetchPostFromCategory} from '../actions';
 
 import PostComponent from '../components/post';
 
-class PostAll extends Component {
+class PostCategory extends Component {
     componentDidMount(){
         const {
-          fetchPosts,
+        match: { params: { category }},
+          fetchPostFromCategory
         } = this.props;
-        fetchPosts();
+        fetchPostFromCategory(category);
       }
     render() {
         const {
@@ -18,6 +19,7 @@ class PostAll extends Component {
 
         return (
             <div>
+            <h4>Post from selected category </h4>
             {posts.map((post) => (
                 <PostComponent post={post}/>
             ))}
@@ -33,7 +35,7 @@ const mapStateToProps = ({posts}) => {
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchPosts: () => dispatch(fetchPosts()),
+        fetchPostFromCategory: (category) =>dispatch(fetchPostFromCategory(category))
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(PostAll);
+export default connect(mapStateToProps,mapDispatchToProps)(PostCategory);

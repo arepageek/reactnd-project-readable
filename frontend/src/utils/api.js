@@ -41,10 +41,33 @@ fetch(`${api}/posts/` + postId + `/comments`, {headers})
     res => res.json(),
     error => console.log("Error getting comments!", error)
 )
+// INSERT COMMENT
+export const insertComment = (obj) => 
+fetch(`${api}/comments`, {
+    method: 'POST',
+    headers : {
+        ...headers,
+        'Content-Type' : 'application/json'
+    },
+    body: JSON.stringify(obj)
+})
+    .then(
+    res => res.json(),
+    error => console.log("Error inserting comment!",error)
+)
 
-/*
+// GET POST FROM CATEGORY
+export const getPostsFromCategory = (category) => 
+    fetch(`${api}/` + category + `/posts`, {
+        headers
+    })
+    .then(
+    res => res.json(),
+    error => console.log("Error getting single comment", error)
+    )
+
 // INSERT POST
-export const insertPost = (obj) => {
+export const insertPost = (obj) => 
     fetch(`${api}/posts`,{
         method: 'POST',
         headers: {
@@ -57,23 +80,11 @@ export const insertPost = (obj) => {
         res => res.json(),
         error => console.log("Error inserting post!", error)
     )
-}
 
-// INSERT COMMENT
-export const insertComment = (obj) => {
-    fetch(`${api}/comments`, {
-        method: 'POST',
-        headers : {
-            ...headers,
-            'Content-Type' : 'application/json'
-        },
-        body: JSON.stringify(obj)
-    })
-    .then(
-        res => res.json(),
-        error => console.log("Error inserting comment!",error)
-    )
-}
+/*
+
+
+
 
 // VOTE ON A POST
 export const scorePost = (postId,score) => {
@@ -171,14 +182,6 @@ export const deleteComment = (commentId) => {
     )
 }
 
-// GET SINGLE POST
-export const getSinglePost = (postId) => {
-    fetch(`${api}/posts/` + postId, {
-        headers
-    }),
-    res => res.json(),
-    error => console.log("Error getting single post", error)
-}
 
 // GET SINGLE COMMENT
 export const getSingleComment = (commentId) => {

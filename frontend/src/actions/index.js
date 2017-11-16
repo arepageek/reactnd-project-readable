@@ -2,7 +2,10 @@ import {
 getPosts,
 getCategories,
 getPost,
-getComments
+getComments,
+insertComment,
+getPostsFromCategory,
+insertPost
 
 } from '../utils/api';
 
@@ -12,6 +15,7 @@ export const GET_ALL_POSTS = 'GET_ALL_POSTS';
 export const GET_SELECTED_POSTS = 'GET_SELECTED_POSTS';
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
 export const GET_ALL_COMMENTS = 'GET_ALL_COMMENTS';
+export const GET_POST_FROM_CATEGORY = 'GET_POST_FROM_CATEGORY';
 export const UPDATE_POST = 'UPDATE_POST';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const UPDATE_SCORE_POST = 'UPDATE_SCORE_POST';
@@ -56,6 +60,30 @@ export const fetchComments = (postId) => dispatch => (
         .then(comments => dispatch({
             type: GET_ALL_COMMENTS,
             comments
+        }))
+)
+
+export const newComment = (obj) => dispatch => (
+    insertComment(obj)
+        .then(comment => dispatch({
+            type: INSERT_COMMENT,
+            comment
+        }))
+)
+
+export const fetchPostFromCategory = (category) => dispatch => (
+    getPostsFromCategory(category)
+    .then(posts => dispatch({
+            type: GET_POST_FROM_CATEGORY,
+            posts
+    }))
+)
+
+export const postPost = (post) => dispatch => (
+    insertPost(post)
+        .then(post => dispatch({
+            type: INSERT_POST,
+            post
         }))
 )
 

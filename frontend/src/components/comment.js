@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {CardPanel, Badge, Icon} from 'react-materialize';
+import {CardPanel, Badge} from 'react-materialize';
 class CommentComponent extends Component {
     render() {
         const {
