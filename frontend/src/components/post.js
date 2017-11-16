@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {Card, Badge} from 'react-materialize';
+import {Card, Badge, Chip} from 'react-materialize';
 import {Link} from 'react-router-dom';
+const Timestamp = require('react-timestamp');
+
 class PostComponent extends Component {
 
     render() {
@@ -11,12 +13,17 @@ class PostComponent extends Component {
         return (
                 <Card key={post.id}>
                     <Link to={`/post/${post.id}`} >
-                    <h4>{post.title}</h4>
+                    <h4>{post.title}</h4>                    
                     </Link>
+                    <p>Posted at: <Timestamp time={post.timestamp/1000} format='date' />
+                    </p>
+                    
                     <h6>{post.body}</h6>
                     <Badge>Comments: ({post.commentCount})</Badge> 
-                    <Badge>Score: {post.voteScore}</Badge>                                                            
-                    <p>Author: {post.author}</p>
+                    <Badge>Score: {post.voteScore}</Badge> 
+                    <Chip>
+                    {post.author}
+                    </Chip>                                                           
                 </Card>
         );
     }

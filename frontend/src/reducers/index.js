@@ -9,7 +9,8 @@ import {
     GET_ALL_COMMENTS,
     INSERT_COMMENT,
     GET_POST_FROM_CATEGORY,
-    INSERT_POST
+    INSERT_POST,
+    UPDATE_SCORE_COMMENT
 } from '../actions';
 
 
@@ -62,17 +63,26 @@ const comments = (state = {comments: []}, action) => {
         case GET_ALL_COMMENTS:
              const {comments} = action;
                 return {
-                    comments
+                    comments : sortComments(comments)
                 };
             case INSERT_COMMENT:
                 return {
-                    comments: [...state.comments, action.comment]
+                    comments: sortComments([...state.comments, action.comment])
+                }
+            case UPDATE_SCORE_COMMENT:
+                    var filter_state = state.comments.filter(comment => comment.id !== action.comment.id)
+                return {
+                    comments: sortComments([...filter_state, action.comment])
                 }
             default:
                 return state;
     }
 }
-
+const sortComments = (comments) => {
+    return [...comments].sort((a,b) => {
+        return b.voteScore - a.voteScore;
+    });
+}
 const sortPostBy = (posts, action) => {
     switch (action) {
         case SORT_BY_UP_VOTES:

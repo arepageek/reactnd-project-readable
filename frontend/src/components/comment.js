@@ -1,21 +1,31 @@
 import React, { Component } from 'react';
-import {CardPanel, Badge} from 'react-materialize';
+import {Card, Badge, Button} from 'react-materialize';
+import {voteComment} from '../actions';
+import {connect} from 'react-redux';
 class CommentComponent extends Component {
+    handleVote = (commentId,vote) => {
+        
+    }
     render() {
         const {
-            comment
+            comment,
+            voteComment
         } = this.props;
         return (
-        <CardPanel className="teal lighten-4 black-text">
+        <Card className="teal lighten-4 black-text" actions={[<div><Button waves='light' className='blue' onClick={() => {voteComment(comment.id,"upVote")}}>Up</Button> - <Button waves='light' className="red" onClick={() => {voteComment(comment.id,"downVote")}}>Down</Button></div>]}>
             <span>{comment.body}</span>
             <p>Author: {comment.author}</p>
-            <Badge>Vote: Up - Down</Badge>  
-            <Badge>Score: {comment.voteScore}</Badge>     
-      
             
-        </CardPanel>
+            <Badge>Score: {comment.voteScore}</Badge>     
+        </Card>
         );
     }
 }
 
-export default CommentComponent;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        voteComment: (commentId,score) => dispatch(voteComment(commentId,score))
+    }
+}
+
+export default connect(null,mapDispatchToProps)(CommentComponent);

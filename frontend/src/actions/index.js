@@ -5,7 +5,8 @@ getPost,
 getComments,
 insertComment,
 getPostsFromCategory,
-insertPost
+insertPost,
+scoreComment
 
 } from '../utils/api';
 
@@ -87,6 +88,13 @@ export const postPost = (post) => dispatch => (
         }))
 )
 
+export const voteComment = (commentId, option) => dispatch => (
+    scoreComment(commentId,option)
+        .then (comment => dispatch({
+            type: UPDATE_SCORE_COMMENT,
+            comment
+        }))
+)
 
 
 // SORT_POST

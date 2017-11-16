@@ -81,6 +81,24 @@ export const insertPost = (obj) =>
         error => console.log("Error inserting post!", error)
     )
 
+    // VOTE FOR A COMMENT
+export const scoreComment = (commentId,option) =>
+    fetch(`${api}/comments/${commentId}`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({option})
+    })
+    .then(
+        res => res.json(),
+        error => console.log("Error update score comment", error)
+    )
+    .then(
+        console.log({option})
+    )
+
 /*
 
 
@@ -102,21 +120,7 @@ export const scorePost = (postId,score) => {
     )
 }
 
-// VOTE FOR A COMMENT
-export const scoreComment = (commentId,score) =>{
-    fetch(`${api}/comments/` + commentId, {
-        method: 'POST',
-        headers: {
-            ...headers,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(score)
-    })
-    .then(
-        res => res.json(),
-        error => console.log("Error update score comment", error)
-    )
-}
+
 
 // UPATE POST
 export const updatePost = (postId, newPost) => {
