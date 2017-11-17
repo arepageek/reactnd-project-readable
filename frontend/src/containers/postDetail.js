@@ -21,7 +21,7 @@ class PostDetail extends Component {
         } = this.props;
         return (
             <div>
-           <PostComponent post={post} />
+           <PostComponent post={post} key={post.id} />
            {comments.map((comment) => (
             <CommentComponent comment={comment} key= {comment.id}/>            
            ))}

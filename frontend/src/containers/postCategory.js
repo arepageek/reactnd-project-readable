@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {fetchPostFromCategory} from '../actions';
-
-import PostComponent from '../components/post';
+import PostOption from '../components/postOption';
 
 class PostCategory extends Component {
     componentDidMount(){
@@ -21,7 +20,8 @@ class PostCategory extends Component {
             <div>
             <h4>Post from selected category </h4>
             {posts.map((post) => (
-                <PostComponent post={post}/>
+                <PostOption post={post} key={post.id} />
+                
             ))}
             </div>
         );
@@ -35,7 +35,7 @@ const mapStateToProps = ({posts}) => {
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchPostFromCategory: (category) =>dispatch(fetchPostFromCategory(category))
+        fetchPostFromCategory: (category) =>dispatch(fetchPostFromCategory(category)),
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(PostCategory);

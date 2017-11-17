@@ -8,7 +8,7 @@ class NewPost extends Component {
         author: '',
         title: '',
         body: '',
-        category: '',
+        category: 'react',
         showSucess: false
     }
     handleChange = (event) => {

@@ -17,8 +17,6 @@ class NewComment extends Component {
         this.setState({
             [name]: value
         })
-        console.log(event.target.value)
-        //this.setState({ author: event.target.value })
     }
     handleSubmit= () =>{
         if(this.state.comment && this.state.author){

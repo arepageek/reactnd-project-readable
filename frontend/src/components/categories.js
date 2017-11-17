@@ -16,12 +16,10 @@ class CategoriesComponent extends Component {
             categories = []
         } = this.props;
         return (
-            <Card>
+            <Card className="hoverable">
             <h4>Categories</h4>
             {categories.map((category,i) =>(
-                <Link to={`/category/${category.path}`}>
-                {console.log(category)}
-                
+                <Link to={`/category/${category.path}`} key={i}>
                 <h6 key={i}>{category.name}</h6>
                 </Link>
             ))}

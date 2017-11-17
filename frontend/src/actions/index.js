@@ -6,7 +6,12 @@ getComments,
 insertComment,
 getPostsFromCategory,
 insertPost,
-scoreComment
+scoreComment,
+scorePost,
+deleteComment,
+updateComment,
+deletePost,
+updatePost
 
 } from '../utils/api';
 
@@ -25,7 +30,8 @@ export const DELETE_POST = 'DELETE_POST';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const SORT_BY_UP_VOTES = 'SORT_BY_UP_VOTES';
 export const SORT_BY_DOWN_VOTES = 'SORT_BY_DOWN_VOTES';
-export const SORT_BY_TIMESTAMP = 'SORT_BY_TIMESTAMP';
+export const SORT_BY_OLD_POST = 'SORT_BY_OLD_POST';
+export const SORT_BY_NEW_POST = 'SORT_BY_NEW_POST';
 
 
 //GET ALL POSTS
@@ -95,7 +101,44 @@ export const voteComment = (commentId, option) => dispatch => (
             comment
         }))
 )
+export const votePost = (postId,option) => dispatch => (
+    scorePost(postId,option)
+        .then(post => dispatch({
+            type: UPDATE_SCORE_POST,
+            post
+        }))
+)
 
+export const delComment = (commentId) => dispatch => (
+    deleteComment(commentId)
+        .then(comment => dispatch({
+            type: DELETE_COMMENT,
+            comment
+        }))
+)
+
+export const upComment = (commentId, comment) => dispatch => (
+    updateComment(commentId,comment)
+        .then(comment => dispatch({
+            type:UPDATE_COMMENT,
+            comment
+        }))
+)
+export const delPost = (postId) => dispatch => (
+    deletePost(postId)
+        .then(post => dispatch({
+            type: DELETE_POST,
+            post
+        }))
+)
+
+export const upPost = (postId, post) => dispatch => (
+    updatePost(postId,post)
+        .then(post => dispatch({
+            type:UPDATE_POST,
+            post
+        }))
+)
 
 // SORT_POST
 export const sortUpVotes = () => ({
@@ -106,6 +149,9 @@ export const sortDownVotes = () => ({
     type: SORT_BY_DOWN_VOTES
 })
 
-export const sortTimeStamp = () => ({
-    type: SORT_BY_TIMESTAMP
+export const sortOldPost = () => ({
+    type: SORT_BY_OLD_POST
+})
+export const sortNewPost = () => ({
+    type: SORT_BY_NEW_POST
 })

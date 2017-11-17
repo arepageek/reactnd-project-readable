@@ -99,79 +99,27 @@ export const scoreComment = (commentId,option) =>
         console.log({option})
     )
 
-/*
 
 
-
-
-// VOTE ON A POST
-export const scorePost = (postId,score) => {
-    fetch(`${api}/post/` + postId, {
+    // VOTE ON A POST
+export const scorePost = (postId,option) => 
+    fetch(`${api}/posts/` + postId, {
         method: 'POST',
         headers: {
             ...headers,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(score)
+        body: JSON.stringify({option})
     })
     .then(
         res => res.json(),
         error => console.log("Error update score post", error)
+    ).then(
+        console.log({option})
     )
-}
-
-
-
-// UPATE POST
-export const updatePost = (postId, newPost) => {
-    fetch(`${api}/posts/` + postId,{
-        method: 'PUT',
-        headers:{
-            ...headers,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newPost)
-    })
-    .then(
-        res => res.json(),
-        error => console.log("Error updating posts", error)
-    )
-}
-
-// UPDATE COMMENT
-export const updateComment = (commentId, newComment) => {
-    fetch(`${api}/comments` + commentId, {
-        method: 'PUT',
-        headers: {
-            ...headers,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newComment)
-    })
-    .then(
-        res => res.json(),
-        error => console.log("Error updating comment", error)
-    )
-}
-
-// DELETE POST
-export const deletePost = (postId) => {
-    fetch(`${api}/posts/` + postId, {
-        method: 'DELETE',
-        headers: {
-            ...headers,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(postId)
-    })
-    .then(
-        res => res.json(),
-        error => console.log("Error deleting post", error)
-    )
-}
 
 // DELETE COMMENT
-export const deleteComment = (commentId) => {
+export const deleteComment = (commentId) => 
     fetch(`${api}/comments/`+commentId,{
         method: 'DELETE',
         headers: {
@@ -184,25 +132,48 @@ export const deleteComment = (commentId) => {
         res => res.json(),
         error => console.log("Error deleting comment", error)
     )
-}
 
-
-// GET SINGLE COMMENT
-export const getSingleComment = (commentId) => {
+// UPDATE COMMENT
+export const updateComment = (commentId, newComment) => 
     fetch(`${api}/comments/` + commentId, {
-        headers
-    }),
-    res => res.json(),
-    error => console.log("Error getting single comment", error)
-}
+        method: 'PUT',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newComment)
+    })
+    .then(
+        res => res.json(),
+        error => console.log("Error deleting comment", error)
+    )
 
-// GET POST FROM CATEGORY
-export const getPostsFromCategory = (category) => {
-    fetch(`${api}/` + category + `/posts`, {
-        headers
-    }),
-    res => res.json(),
-    error => console.log("Error getting single comment", error)
-}
+    // DELETE POST
+export const deletePost = (postId) => 
+    fetch(`${api}/posts/` + postId, {
+        method: 'DELETE',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(postId)
+    })
+    .then(
+        res => res.json(),
+        error => console.log("Error deleting post", error)
+    )
 
-*/
+// UPDATE POST
+export const updatePost = (postId, newPost) => 
+    fetch(`${api}/posts/` + postId,{
+        method: 'PUT',
+        headers:{
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newPost)
+    })
+    .then(
+        res => res.json(),
+        error => console.log("Error updating posts", error)
+    )

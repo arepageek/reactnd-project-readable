@@ -5,6 +5,7 @@ import PostDetail from './postDetail';
 import PostCategory from './postCategory';
 import NewPost from './newPost';
 import CategoriesComponent from '../components/categories';
+import SortPost from './sortPost';
 import {Switch, Route,Link} from 'react-router-dom';
 class App extends Component {
 
@@ -39,7 +40,8 @@ class App extends Component {
         </Col>
         <Col s={12} m={2} l={3}  className='Menu'>
           <CategoriesComponent/>
-        
+        <Route exact path="/" component={SortPost}/>
+          
         </Col>
         </Row>
       </Switch>
