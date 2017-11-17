@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Row, Input, Button, Col} from 'react-materialize';
 import {connect} from 'react-redux';
-import {newComment} from '../actions';
+import {newComment, fetchPost} from '../actions';
 import uuid from 'uuid';
 class NewComment extends Component {
 
@@ -23,7 +23,7 @@ class NewComment extends Component {
             const obj = 
             {
                 id: uuid(),
-                parentId: this.props.post.post.id,
+                parentId: this.props.postId,
                 timestamp: Date.now(),
                 body: this.state.comment,
                 author: this.state.author,
@@ -35,7 +35,11 @@ class NewComment extends Component {
                 author: '',
                 comment: ''
               })
-        this.props.newComment(obj);
+        this.props.newComment(obj)
+        .then(
+            this.props.fetchPost(this.props.postId)          
+        )
+        
         }
     }
     clearAll = () => {
@@ -61,17 +65,13 @@ class NewComment extends Component {
     }
 }
 
-const mapStateToProps = ({post,comments}) => {
-    return{
-        post,
-        comments
-    }
-}
+
 const mapDispatchToProps = (dispatch) => {
     return{
-        newComment: (obj) => dispatch(newComment(obj))
+        newComment: (obj) => dispatch(newComment(obj)),
+        fetchPost: (postId) => dispatch(fetchPost(postId)),
     }
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(NewComment);
+export default connect(null,mapDispatchToProps)(NewComment);

@@ -4,6 +4,7 @@ import {fetchPost, fetchComments} from '../actions';
 import PostComponent from '../components/post';
 import CommentComponent from '../components/comment';
 import NewComment from './newComment';
+import PostOption from '../components/postOption';
 class PostDetail extends Component {
     componentDidMount(){
         const {
@@ -14,18 +15,31 @@ class PostDetail extends Component {
         fetchPost(postId);
         fetchComments(postId);
       }
+      
+      
     render() {
         const {
             post = [],
             comments = []
         } = this.props;
+        
+        let show = <h6>Post not found!</h6>
+        if(post){
+            show =
+            <div>
+            <PostOption post={post} key={post.id} />
+            {comments.map((comment) => (
+             <CommentComponent comment={comment} key= {comment.id}/>            
+            ))}
+            <NewComment postId={post.id}/>
+            </div>;
+        }else{
+            let show = <h6>Post not found!</h6>
+            
+        }
         return (
             <div>
-           <PostComponent post={post} key={post.id} />
-           {comments.map((comment) => (
-            <CommentComponent comment={comment} key= {comment.id}/>            
-           ))}
-           <NewComment />
+                {show}
            </div>
         );
     }

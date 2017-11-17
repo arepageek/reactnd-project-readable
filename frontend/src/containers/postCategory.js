@@ -4,25 +4,44 @@ import {fetchPostFromCategory} from '../actions';
 import PostOption from '../components/postOption';
 
 class PostCategory extends Component {
-    componentDidMount(){
+    componentWillMount(){
         const {
         match: { params: { category }},
           fetchPostFromCategory
         } = this.props;
         fetchPostFromCategory(category);
       }
+      componentDidUpdate(prevProps, prevState){
+        const {
+        match: { params: { category }},
+          fetchPostFromCategory
+        } = this.props;
+        if(prevProps.match.params.category !== category){
+            fetchPostFromCategory(category);            
+        }
+      }
     render() {
         const {
             posts = []
         } = this.props;
 
-        return (
+        let show = ''
+        if(this.props.posts.length > 0){
+            show =
             <div>
-            <h4>Post from selected category </h4>
+            <h4>Showing category: {this.props.match.params.category}!</h4>
             {posts.map((post) => (
                 <PostOption post={post} key={post.id} />
                 
             ))}
+            </div>;
+        }else{
+         show = <h4>Post not found!</h4>
+            
+        }
+        return (
+            <div>
+                {show}
             </div>
         );
     }

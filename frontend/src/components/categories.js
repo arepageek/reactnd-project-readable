@@ -19,7 +19,7 @@ class CategoriesComponent extends Component {
             <Card className="hoverable">
             <h4>Categories</h4>
             {categories.map((category,i) =>(
-                <Link to={`/category/${category.path}`} key={i}>
+                <Link to={`/${category.path}`} key={i}>
                 <h6 key={i}>{category.name}</h6>
                 </Link>
             ))}

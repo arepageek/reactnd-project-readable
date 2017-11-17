@@ -33,8 +33,8 @@ class App extends Component {
           <PostAll />          
         )}
         />
-        <Route exact path="/category/:category" component={PostCategory}/>
-        <Route exact path="/post/:postId" component={PostDetail}/>
+        <Route exact path="/:category" component={PostCategory}/>
+        <Route exact path="/:category/:postId" component={PostDetail}/>
         <Route exact path="/newPost" component={NewPost}/>
         
         </Col>

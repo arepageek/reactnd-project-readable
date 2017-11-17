@@ -80,7 +80,7 @@ class PostDetail extends Component {
         return (
             <div>
             <Card key={post.id} className="hoverable" actions={[<div><Button waves='light' className='blue' onClick={() => {votePost(post.id,"upVote")}}>Up</Button> - <Button waves='light' className="red" onClick={() => {votePost(post.id,"downVote")}}>Down</Button></div>]}>
-            <Link to={`/post/${post.id}`} >
+            <Link to={`/${post.category}/${post.id}`} >
             <h4>{post.title}</h4>                    
             </Link>
             <p>Posted at: <Timestamp time={post.timestamp/1000} format='date' />

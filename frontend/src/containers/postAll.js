@@ -16,11 +16,24 @@ class PostAll extends Component {
         const {
             posts = []
         } = this.props;
-        return (
+        let show = ''
+        if(this.props.posts.length > 0){
+            show =
             <div>
+            <h4>Showing all posts!</h4>
             {posts.map((post) => (
                 <PostOption post={post} key={post.id} />
+                
             ))}
+            </div>;
+        }else{
+            let show = <h4>Post not found!</h4>
+            
+        }
+        return (
+            <div>
+            {show}
+            
             </div>
         );
     }

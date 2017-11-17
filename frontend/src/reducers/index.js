@@ -71,6 +71,8 @@ const posts = (state = initialPostState, action) =>{
 const post = (state = {post: []}, action) =>{
     const {post} = action;    
     switch(action.type){
+        case UPDATE_POST:
+        case UPDATE_SCORE_POST:
         case GET_SELECTED_POSTS:
             return {
                 post
@@ -79,6 +81,10 @@ const post = (state = {post: []}, action) =>{
             return {
                 post
             }
+        case DELETE_POST:
+            return {
+                post: null
+            };
         default:
             return state;
     }
