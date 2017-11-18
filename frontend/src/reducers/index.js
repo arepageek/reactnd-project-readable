@@ -68,7 +68,7 @@ const posts = (state = initialPostState, action) =>{
     }
 };
 
-const post = (state = {post: []}, action) =>{
+const post = (state = {post: {}}, action) =>{
     const {post} = action;    
     switch(action.type){
         case UPDATE_POST:

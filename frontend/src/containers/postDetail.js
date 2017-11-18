@@ -19,12 +19,12 @@ class PostDetail extends Component {
       
     render() {
         const {
-            post = [],
+            post = {},
             comments = []
         } = this.props;
-        
+      //  console.log(Object.keys(post));
         let show = <h6>Post not found!</h6>
-        if(post){
+        if(post && Object.keys(post).length > 0){
             show =
             <div>
             <PostOption post={post} key={post.id} />
