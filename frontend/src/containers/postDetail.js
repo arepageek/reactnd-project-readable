@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {fetchPost, fetchComments} from '../actions';
-import PostComponent from '../components/post';
 import CommentComponent from '../components/comment';
 import NewComment from './newComment';
 import PostOption from '../components/postOption';
@@ -16,15 +15,22 @@ class PostDetail extends Component {
         fetchComments(postId);
       }
       
-      
     render() {
         const {
             post = {},
             comments = []
         } = this.props;
-      //  console.log(Object.keys(post));
+        var exist = Object.keys(post).map(key => {
+                        if(key === 'error'){
+                            return false;
+                        }else{
+                            return true;
+                        }
+                    })
+        console.log(exist[0]);
+
         let show = <h6>Post not found!</h6>
-        if(post && Object.keys(post).length > 0){
+        if(post && Object.keys(post).length > 0 && exist[0]){
             show =
             <div>
             <PostOption post={post} key={post.id} />
@@ -34,7 +40,7 @@ class PostDetail extends Component {
             <NewComment postId={post.id}/>
             </div>;
         }else{
-            let show = <h6>Post not found!</h6>
+             show = <h6>Post not found!</h6>
             
         }
         return (

@@ -27,7 +27,7 @@ class PostAll extends Component {
             ))}
             </div>;
         }else{
-            let show = <h4>Post not found!</h4>
+            show = <h4>Post not found!</h4>
             
         }
         return (

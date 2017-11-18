@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Card, Button,Chip, Input, Row, Col} from 'react-materialize';
-import {voteComment, delComment, upComment} from '../actions';
+import {voteComment, delComment, upComment, fetchPost} from '../actions';
 import {connect} from 'react-redux';
 const Timestamp = require('react-timestamp');
 
@@ -38,14 +38,22 @@ class CommentComponent extends Component {
               this.setState({
                 showEditing: false
               })
-        this.props.upComment(commentId,obj);
+        this.props.upComment(commentId,obj)
         }
+    }
+
+    handleDelete = (comment) => {
+        console.log()
+        this.props.delComment(comment.id)
+        .then(
+            this.props.fetchPost(comment.parentId)        
+        )
+        
     }
     render() {
         const {
             comment,
-            voteComment,
-            delComment
+            voteComment
         } = this.props;
         let formEdit= ''
         if (this.state.showEditing){
@@ -77,7 +85,7 @@ class CommentComponent extends Component {
             <span class="new badge" data-badge-caption={comment.voteScore}>Score</span>
             <div className="right-align">
                 <Button className="orange" onClick={() => {this.showEdit()}}>Edit</Button>            
-                <Button className="red" onClick={() => {delComment(comment.id)}}>Delete</Button>
+                <Button className="red" onClick={() => {this.handleDelete(comment)}}>Delete</Button>
             </div>
         </Card>
         {formEdit}
@@ -86,12 +94,19 @@ class CommentComponent extends Component {
     }
 }
 
+const mapStateToProps = ({post}) => {
+    return{
+        post:post.post
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         voteComment: (commentId,score) => dispatch(voteComment(commentId,score)),
         delComment: (commentId) => dispatch(delComment(commentId)),
-        upComment: (commentId, comment) => dispatch(upComment(commentId,comment))
+        upComment: (commentId, comment) => dispatch(upComment(commentId,comment)),
+        fetchPost: (postId) => dispatch(fetchPost(postId))
     }
 }
 
-export default connect(null,mapDispatchToProps)(CommentComponent);
+export default connect(mapStateToProps,mapDispatchToProps)(CommentComponent);
