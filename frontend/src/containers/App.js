@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import {Row, Navbar, NavItem, Col, Footer} from 'react-materialize';
+import {Row,Navbar, NavItem, Col, Footer} from 'react-materialize';
 import PostAll from './postAll';
 import PostDetail from './postDetail';
 import PostCategory from './postCategory';
 import NewPost from './newPost';
 import CategoriesComponent from '../components/categories';
 import SortPost from './sortPost';
-import {Switch, Route,Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 class App extends Component {
 
 
@@ -17,10 +17,9 @@ class App extends Component {
       <Row>
       
       <Navbar brand='Readable Project' href='/' right fixed>
-        <NavItem><Link to="/">HOME</Link></NavItem>      
-        <NavItem><Link to="/newPost">CREATE POST</Link></NavItem>
+        <NavItem href='/'>HOME</NavItem>      
+        <NavItem href='newPost'>CREATE POST</NavItem>
       </Navbar>
-      <Switch>
       
         <Row>
         <Col s={12} m={10} l={8} offset='l1' className='Post'>
@@ -44,7 +43,6 @@ class App extends Component {
           
         </Col>
         </Row>
-      </Switch>
       <Footer copyrights="Andrés Aguilar - React Nanodegree - Udacity 2017">
       </Footer>
       </Row>

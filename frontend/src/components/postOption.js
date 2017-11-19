@@ -79,7 +79,7 @@ class PostDetail extends Component {
         }
         return (
             <div>
-            <Card key={post.id} className="hoverable" actions={[<div><Button waves='light' className='blue' onClick={() => {votePost(post.id,"upVote")}}>Up</Button> - <Button waves='light' className="red" onClick={() => {votePost(post.id,"downVote")}}>Down</Button></div>]}>
+            <Card key={post.id} className="hoverable" actions={[<div key={post.timestamp}><Button waves='light' className='blue' onClick={() => {votePost(post.id,"upVote")}}>Up</Button> - <Button waves='light' className="red" onClick={() => {votePost(post.id,"downVote")}}>Down</Button></div>]}>
             <Link to={`/${post.category}/${post.id}`} >
             <h4>{post.title}</h4>                    
             </Link>
@@ -90,8 +90,8 @@ class PostDetail extends Component {
             <Chip>
             {post.author}
             </Chip> 
-            <span class="new badge" data-badge-caption={post.commentCount}>Comments</span>                
-            <span class="new badge" data-badge-caption={post.voteScore}>Score</span>
+            <span className="new badge" data-badge-caption={post.commentCount}>Comments</span>                
+            <span className="new badge" data-badge-caption={post.voteScore}>Score</span>
             
             <div className="right-align">
                 <Button className="orange" onClick={() => {this.showEdit()}}>Edit</Button>            

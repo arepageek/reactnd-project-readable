@@ -76,13 +76,13 @@ class CommentComponent extends Component {
         return (
             <div>
             
-        <Card className="teal lighten-4 black-text hoverable" actions={[<div><Button waves='light' className='blue' onClick={() => {voteComment(comment.id,"upVote")}}>Up</Button> - <Button waves='light' className="red" onClick={() => {voteComment(comment.id,"downVote")}}>Down</Button></div>]} >
+        <Card className="teal lighten-4 black-text hoverable" actions={[<div key={comment.timestamp}><Button waves='light' className='blue' onClick={() => {voteComment(comment.id,"upVote")}}>Up</Button> - <Button waves='light' className="red" onClick={() => {voteComment(comment.id,"downVote")}}>Down</Button></div>]} >
             <h6>{comment.body}</h6>
             <p>Posted at: <Timestamp time={comment.timestamp/1000} format='date' /></p>            
             <Chip>
             Author: {comment.author}
             </Chip> 
-            <span class="new badge" data-badge-caption={comment.voteScore}>Score</span>
+            <span className="new badge" data-badge-caption={comment.voteScore}>Score</span>
             <div className="right-align">
                 <Button className="orange" onClick={() => {this.showEdit()}}>Edit</Button>            
                 <Button className="red" onClick={() => {this.handleDelete(comment)}}>Delete</Button>
