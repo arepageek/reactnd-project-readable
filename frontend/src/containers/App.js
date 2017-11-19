@@ -18,7 +18,7 @@ class App extends Component {
       
       <Navbar brand='Readable Project' href='/' right fixed>
         <NavItem href='/'>HOME</NavItem>      
-        <NavItem href='newPost'>CREATE POST</NavItem>
+        <NavItem href='/newPost'>CREATE POST</NavItem>
       </Navbar>
       
         <Row>

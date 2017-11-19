@@ -20,16 +20,18 @@ class PostDetail extends Component {
             post = {},
             comments = []
         } = this.props;
-        var exist = Object.keys(post).map(key => {
+        var exist = [false];
+        if (post){ 
+        exist = Object.keys(post).map(key => {
                         if(key === 'error'){
                             return false;
                         }else{
                             return true;
                         }
                     })
-        console.log(exist[0]);
+        }
 
-        let show = <h6>Post not found!</h6>
+        let show = ''
         if(post && Object.keys(post).length > 0 && exist[0]){
             show =
             <div>

@@ -68,7 +68,7 @@ class NewPost extends Component {
                 <Input multiple label="Post" s={12}  name="body" value={this.state.body} onChange={this.handleChange} required/>
                 <Input s={6} label="Author" name="author" value={this.state.author} onChange={this.handleChange} required />
                 
-                <Input s={6} type='select' label="Categories" name="category" value={this.state.category} onChange={this.handleChange}>
+                <Input s={6} type='select' label="Categories" name="category" defaultValue={this.state.category} onChange={this.handleChange}>
                     {categories.map((category,key) => (
                         <option value={category.name} key={key}>{category.name}</option>
                     ))}

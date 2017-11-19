@@ -60,11 +60,11 @@ class PostDetail extends Component {
             form = <div>
             <h4> Edit Post</h4>
             <Row>
-                <Input s={8} label="Title" name="title" value={this.state.title} onChange={this.handleChange} required />            
-                <Input multiple label="Post" s={12}  name="body" value={this.state.body} onChange={this.handleChange} required/>
-                <Input s={6} label="Author" name="author" value={this.state.author} onChange={this.handleChange} required />
+                <Input s={8} label="Title" name="title" defaultValue={this.state.title} onChange={this.handleChange} required />            
+                <Input multiple label="Post" s={12}  name="body" defaultValue={this.state.body} onChange={this.handleChange} required/>
+                <Input s={6} label="Author" name="author" defaultValue={this.state.author} onChange={this.handleChange} required />
                 
-                <Input s={6} type='select' label="Categories" name="category" value={this.state.category} onChange={this.handleChange}>
+                <Input s={6} type='select' label="Categories" name="category" defaultValue={this.state.category} onChange={this.handleChange}>
                     {categories.map((category,key) => (
                         <option value={category.name} key={key}>{category.name}</option>
                     ))}
